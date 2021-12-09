@@ -30,3 +30,40 @@ ALTER TABLE animals
 ALTER TABLE animals
     ADD owner_id INT,
     ADD CONSTRAINT owner_id FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+-- Create a table named vets
+
+CREATE TABLE vets (
+    id INT PRIMARY KEY GENERATED  ALWAYS AS IDENTITY ,
+    name TEXT,
+    age INT,
+    date_of_graduation DATE
+);
+
+-- There is a many-to-many relationship between the tables species and vets
+
+CREATE TABLE specializations ();
+
+ALTER TABLE specializations
+    ADD species_id INT,
+    ADD CONSTRAINT species_id FOREIGN KEY(species_id) REFERENCES species(id);
+
+ALTER TABLE specializations
+    ADD vet_id INT,
+    ADD CONSTRAINT vet_id FOREIGN KEY(vet_id) REFERENCES vets(id);
+
+
+-- There is a many-to-many relationship between the tables animals and vets
+
+CREATE TABLE visits ();
+
+ALTER TABLE visits
+    ADD vet_id INT,
+    ADD CONSTRAINT vet_id FOREIGN KEY(vet_id) REFERENCES vets(id);
+
+ALTER TABLE visits
+    ADD animal_id INT,
+    ADD CONSTRAINT animal_id FOREIGN KEY(animal_id) REFERENCES animals(id);
+
+-- it should also keep track of the date of the visit
+ALTER TABLE visits ADD visit_date DATE
