@@ -67,3 +67,10 @@ ALTER TABLE visits
 
 -- it should also keep track of the date of the visit
 ALTER TABLE visits ADD visit_date DATE
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+CREATE INDEX animals_id ON visits(animals_id);
+CREATE INDEX visits_id ON visits(vets_id);
+CREATE INDEX owners_mail ON owners(email ASC);
