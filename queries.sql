@@ -193,3 +193,12 @@ WHERE vets.name='Maisy Smith'
 GROUP BY species.name
 ORDER BY COUNT DESC
 LIMIT 1;
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4; --132.929ms
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2; --373.038ms
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com'; --140.216ms
+
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4; -- 42.575 ms
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2; /* 161.545 ms */
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com'; --0.044 ms
